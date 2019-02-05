@@ -48,7 +48,7 @@ module MethodsGame
       deck.give_card(dealer.hand)
       choice_dealer('to take the card')
     else
-      choice_dealer('to skip the move')
+      choice_dealer('not to take the card')
     end
     main_menu
   end
