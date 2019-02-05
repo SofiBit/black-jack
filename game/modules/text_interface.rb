@@ -42,7 +42,7 @@ module TextInterface
   end
 
   def cards_of_dealer
-    if user.name.length > 3
+    if user.name.length > 3 || user.hand.cards_in_hand.size > 2
       print "\tCards of Dealer: "
     else
       print "\t\tCards of Dealer: "
