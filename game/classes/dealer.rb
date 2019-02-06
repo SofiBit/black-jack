@@ -1,5 +1,4 @@
 class Dealer < User
-
   attr_accessor :choice
   attr_reader :name
 
@@ -9,6 +8,6 @@ class Dealer < User
   end
 
   def add_card?
-    self.hand.score < 17
+    hand.score < 17
   end
 end

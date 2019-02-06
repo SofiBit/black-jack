@@ -7,24 +7,24 @@ module TextInterface
     puts "Hello! Welcome to the Black Jack! What's youre name?"
   end
 
-  def bet_text
+  def bet_text(user)
     puts "#{user.name}, you make a bet - 10 $"
     line
   end
 
-  def main_menu(open = nil)
+  def main_menu(dealer, user, open = nil)
     print "Cards of #{user.name}: "
     user.hand.cards_in_hand.each do |card|
       print "#{card.name_card}#{card.suit}  "
     end
-    dealer_cards(open)
+    dealer_cards(dealer, open)
     print "Points of #{user.name}: #{user.hand.score}\t\t"
-    dealer_points(open)
+    dealer_points(dealer, open)
     line
   end
 
-  def dealer_cards(open)
-    return dealer_cards_open unless open.nil?
+  def dealer_cards(dealer, open)
+    return dealer_cards_open(dealer) unless open.nil?
 
     card = '**'
     quantity_cards = dealer.hand.cards_in_hand.size
@@ -33,7 +33,7 @@ module TextInterface
     line
   end
 
-  def dealer_cards_open
+  def dealer_cards_open(dealer)
     cards_of_dealer
     dealer.hand.cards_in_hand.each do |card|
       print "#{card.name_card}#{card.suit}  "
@@ -49,13 +49,13 @@ module TextInterface
     end
   end
 
-  def dealer_points(open)
+  def dealer_points(dealer, open)
     return puts 'Points of Dealer: ???' if open.nil?
 
     puts "Points of Dealer: #{dealer.hand.score}"
   end
 
-  def text_user_move(number_move)
+  def text_user_move(user, number_move)
     whose_move(user)
     puts "#{user.name},choose!"
     puts '1 - add a card.'
@@ -70,7 +70,7 @@ module TextInterface
     line
   end
 
-  def mistake
+  def mistake(user)
     puts "#{user.name},enter a correct number"
   end
 
@@ -80,16 +80,16 @@ module TextInterface
     puts 'Any other character - No'
   end
 
-  def text_end_game(result)
+  def text_end_game(dealer, user, result)
     puts "\t\t--------- OPEN CARDS --------"
     line
-    main_menu(true)
+    main_menu(dealer, user, true)
     puts "Winner: #{result}!"
     puts "Currently on your bank account: #{user.bank.funds}$"
     line
   end
 
-  def no_money_user
+  def no_money_user(user)
     puts "#{user.name}, you haven't money. Go to the home :)"
   end
 

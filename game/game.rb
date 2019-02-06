@@ -18,7 +18,7 @@ class Game
       repeat_game
       choice = gets.chomp.to_i
       break unless choice == 1
-      break if money == 1
+      break if money(dealer, user) == 1
     end
   end
 
@@ -31,29 +31,29 @@ class Game
     dealer.hand.discard_cards
     self.deck = Deck.new
 
-    bet
-    deal_cards
-    choice = move_user(1)
+    bet(dealer, user, common_bank)
+    deal_cards(dealer, user, deck)
+    choice = move_user(user, 1)
     choice_user(choice)
   end
 
   def choice_user(choice)
     case choice
     when 1 then when_1
-    when 2 then end_game
+    when 2 then end_game(common_bank, dealer, user)
     when 3 then when_3
     end
   end
 
   def when_1
-    add_card_user
-    move_dealer
-    end_game
+    add_card_user(user, deck)
+    move_dealer(dealer, deck)
+    end_game(common_bank, dealer, user)
   end
 
   def when_3
-    move_dealer
-    add_card_user if move_user(2) == 1
-    end_game
+    move_dealer(dealer, deck)
+    add_card_user(user, deck) if move_user(user, 2) == 1
+    end_game(common_bank, dealer, user)
   end
 end

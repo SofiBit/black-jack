@@ -3,3 +3,6 @@ Style/Documentation:
 
 Metrics/MethodLength:
   Max: 11
+
+Metrics/LineLength:
+  Max: 85
