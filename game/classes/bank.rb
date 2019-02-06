@@ -20,8 +20,6 @@ class Bank
   end
 
   def money?
-    return true if funds > 0
-
-    false
+    funds > 0
   end
 end

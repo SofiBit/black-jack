@@ -13,8 +13,6 @@ class Card
   end
 
   def ace?
-    return true if name_card == 'A'
-
-    false
+    name_card == 'A'
   end
 end

@@ -9,8 +9,6 @@ class Dealer < User
   end
 
   def add_card?
-    return true if self.hand.score < 17
-
-    false
+    self.hand.score < 17
   end
 end
