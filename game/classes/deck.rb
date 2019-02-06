@@ -5,35 +5,22 @@ class Deck
   SUIT = %w[♠ ♥ ♣ ♦].freeze
 
   def initialize
-    @cards = {}
+    @cards = []
     creature_deck
   end
 
-  def give_card(hand)
-    card = random_card
-
-    hand.take_card(card)
-
-    cards.each { |key, value| cards.delete(key) if value == card }
+  def give_card
+    cards.pop
   end
 
   private
 
   def creature_deck
-    i = 1
     NAME_CARD.each do |name_card|
       SUIT.each do |suit|
-        cards[i] = Card.new(name_card, suit)
-        i += 1
+        cards << Card.new(name_card, suit)
       end
     end
-  end
-
-  def random_card
-    cards_keys = cards.keys
-
-    random_key = cards_keys.sample
-
-    cards[random_key]
+    cards.shuffle!
   end
 end

@@ -17,8 +17,8 @@ module MethodsGame
   end
 
   def deal_cards
-    2.times { deck.give_card(user.hand) }
-    2.times { deck.give_card(dealer.hand) }
+    2.times { user.hand.take_card(deck.give_card) }
+    2.times { dealer.hand.take_card(deck.give_card) }
     main_menu
   end
 
@@ -40,12 +40,12 @@ module MethodsGame
   end
 
   def add_card_user
-    deck.give_card(user.hand)
+    user.hand.take_card(deck.give_card)
   end
 
   def move_dealer
     if dealer.add_card?
-      deck.give_card(dealer.hand)
+      dealer.hand.take_card(deck.give_card)
       choice_dealer('to take the card')
     else
       choice_dealer('not to take the card')
