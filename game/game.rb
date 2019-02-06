@@ -4,7 +4,6 @@ class Game
   attr_accessor :deck
 
   include MethodsGame
-  include PointsCounter
   include TextInterface
 
   def initialize

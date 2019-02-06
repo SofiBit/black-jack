@@ -1,5 +1,4 @@
 class Dealer < User
-  include PointsCounter
 
   attr_accessor :choice
   attr_reader :name
@@ -10,7 +9,7 @@ class Dealer < User
   end
 
   def add_card?
-    return true if game_points(hand) < 17
+    return true if self.hand.score < 17
 
     false
   end

@@ -18,7 +18,7 @@ module TextInterface
       print "#{card.name_card}#{card.suit}  "
     end
     dealer_cards(open)
-    print "Points of #{user.name}: #{points_user}\t\t"
+    print "Points of #{user.name}: #{user.hand.score}\t\t"
     dealer_points(open)
     line
   end
@@ -52,7 +52,7 @@ module TextInterface
   def dealer_points(open)
     return puts 'Points of Dealer: ???' if open.nil?
 
-    puts "Points of Dealer: #{points_dealer}"
+    puts "Points of Dealer: #{dealer.hand.score}"
   end
 
   def text_user_move(number_move)

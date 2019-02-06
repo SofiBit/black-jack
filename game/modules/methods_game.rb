@@ -40,7 +40,7 @@ module MethodsGame
   end
 
   def add_card_user
-    1.times { deck.give_card(user.hand) }
+    deck.give_card(user.hand)
   end
 
   def move_dealer
@@ -67,20 +67,20 @@ module MethodsGame
   def who_winner
     return dealer if dealer_winner?
     return user if user_winner?
-    return 'no winner. All lost' if points_user > 21 && points_dealer > 21
-    return 'no winner. Draw' if points_user == points_dealer
+    return 'no winner. All lost' if user.hand.score > 21 && dealer.hand.score > 21
+    return 'no winner. Draw' if user.hand.score == dealer.hand.score
   end
 
   def dealer_winner?
-    return true if points_user > 21 && points_dealer <= 21
-    return true if points_dealer > points_user
+    return true if user.hand.score > 21 && dealer.hand.score <= 21
+    return true if dealer.hand.score > user.hand.score
 
     false
   end
 
   def user_winner?
-    return true if points_user > points_dealer
-    return true if points_dealer > 21 && points_user <= 21
+    return true if user.hand.score > dealer.hand.score
+    return true if dealer.hand.score > 21 && user.hand.score <= 21
 
     false
   end
