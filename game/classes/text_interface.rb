@@ -1,4 +1,4 @@
-module TextInterface
+class TextInterface
   def line
     puts ''
   end
@@ -17,31 +17,31 @@ module TextInterface
     user.hand.cards_in_hand.each do |card|
       print "#{card.name_card}#{card.suit}  "
     end
-    dealer_cards(dealer, open)
+    dealer_cards(dealer, user, open)
     print "Points of #{user.name}: #{user.hand.score}\t\t"
     dealer_points(dealer, open)
     line
   end
 
-  def dealer_cards(dealer, open)
-    return dealer_cards_open(dealer) unless open.nil?
+  def dealer_cards(dealer, user, open)
+    return dealer_cards_open(dealer, user) unless open.nil?
 
     card = '**'
     quantity_cards = dealer.hand.cards_in_hand.size
-    cards_of_dealer
+    cards_of_dealer(user)
     quantity_cards.times { print "#{card} " }
     line
   end
 
-  def dealer_cards_open(dealer)
-    cards_of_dealer
+  def dealer_cards_open(dealer, user)
+    cards_of_dealer(user)
     dealer.hand.cards_in_hand.each do |card|
       print "#{card.name_card}#{card.suit}  "
     end
     line
   end
 
-  def cards_of_dealer
+  def cards_of_dealer(user)
     if user.name.length > 4 || user.hand.cards_in_hand.size > 2
       print "\tCards of Dealer: "
     else
@@ -63,7 +63,7 @@ module TextInterface
     puts '3 - skip the move.' if number_move == 1
   end
 
-  def choice_dealer(what)
+  def choice_dealer(dealer, what)
     system 'clear'
     whose_move(dealer)
     puts "Dealer сhose #{what}!"
