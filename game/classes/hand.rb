@@ -19,4 +19,8 @@ class Hand
     cards_in_hand.clear
     @score = 0
   end
+
+  def see_cards
+    cards_in_hand.map { |card| card.name_card + card.suit }.join('  ')
+  end
 end
